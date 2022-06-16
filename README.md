@@ -1,6 +1,6 @@
-# Ecmascript Import Sorter README
+# Ecmascript Import Sorter
 
-Sorts automatically es style module imports in javascript files (js, jsx, ts, tsx)
+VS Code Extension. Sorts automatically es style module imports in javascript files (js, jsx, ts, tsx)
 
 ## Features
 
