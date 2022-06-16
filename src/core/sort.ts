@@ -1,5 +1,5 @@
-import { Position, Range, TextEdit } from "vscode";
 import Importation from "./importation";
+import { Position, Range, TextEdit } from "vscode";
 
 function sortImports() {
   return (a: Importation, b: Importation) => {

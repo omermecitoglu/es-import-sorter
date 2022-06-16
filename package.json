@@ -2,7 +2,7 @@
   "name": "es-import-sorter",
   "displayName": "ES Import Sorter",
   "description": "sorts automatically es style module imports in js, jsx, ts, tsx files.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "assets/icons/es-import-sorter.png",
   "publisher": "viegnar",
   "license": "MIT",

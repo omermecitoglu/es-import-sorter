@@ -49,7 +49,7 @@ export default class Importation {
       }
       return names;
     }
-    return this.names;
+    return this.rawNames;
   }
 
   build(semiColon: boolean, sortNames: boolean) {
@@ -57,7 +57,7 @@ export default class Importation {
   }
 
   static test(raw: string): [boolean, string, string] {
-    const m = /import (.*) from "(.*)"/g.exec(raw);
+    const m = /^import (.*) from "(.*)"/g.exec(raw);
     if (m) {
       return [m.length === 3, m[1], m[2]];
     }
