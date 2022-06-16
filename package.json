@@ -3,6 +3,13 @@
   "displayName": "ES Import Sorter",
   "description": "sorts automatically es style module imports in js, jsx, ts, tsx files.",
   "version": "0.0.1",
+  "icon": "assets/icons/es-import-sorter.png",
+  "publisher": "viegnar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermecitoglu/es-import-sorter.git"
+  },
   "engines": {
     "vscode": "^1.68.0"
   },
