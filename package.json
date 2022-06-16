@@ -10,14 +10,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:es-import-sorter.helloWorld"
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onCommand:es-import-sorter.sortImports"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "es-import-sorter.helloWorld",
-        "title": "Hello World"
+        "command": "es-import-sorter.sortImports",
+        "title": "Sort Imports"
       }
     ]
   },
