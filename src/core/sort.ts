@@ -1,5 +1,15 @@
-import Importation from "./importation";
 import { Position, Range, TextEdit } from "vscode";
+import Importation from "./importation";
+
+function isNodeModule(moduleName: string) {
+  return /^[a-z|A-Z]/.test(moduleName);
+}
+
+function sortByModuleName(module1: string, module2: string) {
+  if (isNodeModule(module1) && !isNodeModule(module2)) return -1;
+  if (!isNodeModule(module1) && isNodeModule(module2)) return 1;
+  return module1 < module2 ? -1 : 1;
+}
 
 function sortImports() {
   return (a: Importation, b: Importation) => {
@@ -10,7 +20,7 @@ function sortImports() {
       if (!bd) return -1;
       return ad < bd ? -1 : 1;
     }
-    return a.module < b.module ? -1 : 1;
+    return sortByModuleName(a.module, b.module);
   };
 }
 
