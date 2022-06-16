@@ -25,7 +25,7 @@ export default class Importation {
   }
 
   getNameList(rawNames: string) {
-    const m = /{ (.*) }/g.exec(rawNames);
+    const m = /{(.*)}/g.exec(rawNames);
     if (m?.length === 2) {
       return m[1].split(",").map(n => n.trim());
     }
