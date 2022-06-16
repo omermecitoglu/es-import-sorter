@@ -25,7 +25,7 @@ export default class Importation {
   }
 
   getNameList(rawNames: string) {
-    const m = /{(.*)}/g.exec(rawNames);
+    const m = /{(.*)}/.exec(rawNames);
     if (m?.length === 2) {
       return m[1].split(",").map(n => n.trim());
     }
@@ -57,7 +57,7 @@ export default class Importation {
   }
 
   static test(raw: string): [boolean, string, string] {
-    const m = /^import (.*) from "(.*)"/g.exec(raw);
+    const m = /^import (.*) from ['|"](.*)['|"]/.exec(raw);
     if (m) {
       return [m.length === 3, m[1], m[2]];
     }
