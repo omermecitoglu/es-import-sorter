@@ -32,14 +32,14 @@ export default class Importation {
     return [];
   }
 
-  get nameListFormatted() {
-    const n = this.names;
+  getNameListFormatted(sortNames: boolean) {
+    const n = sortNames ? this.names.sort() : this.names;
     return n.length ? `{ ${n.join(", ")} }` : "";
   }
 
   namesFormatted(sortNames: boolean) {
     if (sortNames) {
-      const names = this.nameListFormatted;
+      const names = this.getNameListFormatted(true);
       const d = this.defaultName;
       if (this.defaultName) {
         if (!names.length) {
