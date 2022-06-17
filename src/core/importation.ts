@@ -12,6 +12,10 @@ export default class Importation {
     this.module = module;
   }
 
+  get isEmpty() {
+    return !this.defaultName && !this.names.length;
+  }
+
   fetchNames(rawNames: string): [string | null, string[]] {
     return [this.getDefaultName(rawNames), this.getNameList(rawNames)];
   }
@@ -53,10 +57,18 @@ export default class Importation {
   }
 
   build(semiColon: boolean, sortNames: boolean) {
-    return `import ${this.namesFormatted(sortNames)} from "${this.module}"${semiColon ? ";" : ""}`;
+    const names = this.namesFormatted(sortNames);
+    if (!names.length) {
+      return `import "${this.module}"${semiColon ? ";" : ""}`;
+    }
+    return `import ${names} from "${this.module}"${semiColon ? ";" : ""}`;
   }
 
   static test(raw: string): [boolean, string, string] {
+    const x = /^import ['|"](.*)['|"]/.exec(raw);
+    if (x?.length === 2) {
+      return [true, "", x[1]];
+    }
     const m = /^import (.*) from ['|"](.*)['|"]/.exec(raw);
     if (m) {
       return [m.length === 3, m[1], m[2]];

@@ -13,6 +13,8 @@ function sortByModuleName(module1: string, module2: string) {
 
 function sortImports() {
   return (a: Importation, b: Importation) => {
+    if (a.isEmpty && !b.isEmpty) return -1;
+    if (!a.isEmpty && b.isEmpty) return 1;
     const ad = a.defaultName;
     const bd = b.defaultName;
     if (ad || bd) {
