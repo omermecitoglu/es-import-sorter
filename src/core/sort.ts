@@ -37,9 +37,9 @@ export function format(text: string, eol: string) {
   let code_started = false;
   for (let index = 0; index < lines.length; index++) {
     const line = lines[index];
-    const [isImport, names, module] = Importation.test(line);
+    const [isImport, isType, names, module] = Importation.test(line);
     if (isImport) {
-      importList.push(new Importation(names, module));
+      importList.push(new Importation(isType, names, module));
       edits.push(TextEdit.delete(new Range(new Position(index, 0), new Position(index + 1, 0))));
     } else if (!line.length && !code_started) {
       edits.push(TextEdit.delete(new Range(new Position(index, 0), new Position(index + 1, 0))));
