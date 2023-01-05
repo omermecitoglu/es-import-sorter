@@ -2,7 +2,7 @@ import { Position, Range, TextEdit } from "vscode";
 import Importation from "./importation";
 
 function isNodeModule(moduleName: string) {
-  return /^[a-z|A-Z]/.test(moduleName);
+  return !/^(.|..|~)\//.test(moduleName);
 }
 
 function sortByModuleName(module1: string, module2: string) {
