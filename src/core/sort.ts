@@ -1,5 +1,5 @@
-import { Position, Range, TextEdit } from "vscode";
 import Importation from "./importation";
+import { Position, Range, TextEdit } from "vscode";
 
 function isNodeModule(moduleName: string) {
   return !/^(.|..|~)\//.test(moduleName);
@@ -13,6 +13,7 @@ function sortByModuleName(module1: string, module2: string) {
 
 function sortImports() {
   return (a: Importation, b: Importation) => {
+    if (a.isDirecitve) return -1;
     if (a.isEmpty && !b.isEmpty) return -1;
     if (!a.isEmpty && b.isEmpty) return 1;
     const ad = a.defaultName;
@@ -37,9 +38,9 @@ export function format(text: string, eol: string) {
   let code_started = false;
   for (let index = 0; index < lines.length; index++) {
     const line = lines[index];
-    const [isImport, isType, names, module] = Importation.test(line);
+    const [isImport, isType, isDirecitve, names, module] = Importation.test(line);
     if (isImport) {
-      importList.push(new Importation(isType, names, module));
+      importList.push(new Importation(isType, isDirecitve, names, module));
       edits.push(TextEdit.delete(new Range(new Position(index, 0), new Position(index + 1, 0))));
     } else if (!line.length && !code_started) {
       edits.push(TextEdit.delete(new Range(new Position(index, 0), new Position(index + 1, 0))));
